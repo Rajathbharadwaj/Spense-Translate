@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  translator:
+    build: .
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - CUDA_VISIBLE_DEVICES=0
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    devices:
+      - /dev/snd:/dev/snd  # For audio access
+    privileged: true  # Required for audio
+    network_mode: host  # For microphone access
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
