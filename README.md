@@ -37,7 +37,7 @@ conda activate indicf5
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
-### 5. Install Flash Attention 2
+### 3. Install Flash Attention 2
 ```bash
 pip install flash-attn --no-build-isolation
 ```
@@ -91,7 +91,7 @@ python real_time_translator.py --target ta --chunk-duration 3
 
 - Model loading: ~30 seconds
 - Processing latency: <2 seconds per 5-second chunk
-- Requires ~8GB VRAM for all models
+- Requires ~18GB VRAM for all models
 
 ## Troubleshooting
 
